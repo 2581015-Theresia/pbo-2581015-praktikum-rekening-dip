@@ -7,8 +7,10 @@ public class BankSolid {
 
         Rekening[] semua = { ani, citra, budi, dewi };
         BerBunga[] berbunga = { ani, citra, dewi };
+        BisaDitarik[] bisaDitarik = { ani, citra, budi };
 
-        ProsesAkhirBulan proses = new ProsesAkhirBulan();
+        Notifikasi notifikasi = new EmailNotifikasi();
+        ProsesAkhirBulan proses = new ProsesAkhirBulan(notifikasi);
         LaporanBank laporan = new LaporanBank();
 
         laporan.cetakDaftar("REKENING AWAL", semua);
@@ -16,7 +18,7 @@ public class BankSolid {
         System.out.println("========== AKHIR BULAN ============");
         proses.potongBiayaAdmin(semua);
         proses.tambahBunga(berbunga);
-        proses.autodebet(semua, 50000);
+        proses.autodebet(bisaDitarik, 50000);
         System.out.println();
         laporan.cetakDaftar("REKENING AKHIR", semua);
         laporan.cetakTotal(semua);
